@@ -4,9 +4,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"path/filepath"
-	"strings"
-
 	"github.com/gomutex/godocx/common/constants"
 	"github.com/gomutex/godocx/common/units"
 	"github.com/gomutex/godocx/dml"
@@ -314,25 +311,23 @@ func (p *Paragraph) addDrawing(rID string, imgCount uint, width units.Inch, heig
 	return &inline
 }
 
-func (p *Paragraph) AddPicture(path string, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddPicture(path, ext string, width units.Inch, height units.Inch) (*PicMeta, error) {
 
 	imgBytes, err := internal.FileToByte(path)
 	if err != nil {
 		return nil, err
 	}
 
-	imgExt := filepath.Ext(path)
 	p.root.ImageCount += 1
-	fileName := fmt.Sprintf("image%d%s", p.root.ImageCount, imgExt)
+	fileName := fmt.Sprintf("image%d%s", p.root.ImageCount, ext)
 	fileIdxPath := fmt.Sprintf("%s%s", constants.MediaPath, fileName)
 
-	imgExtStripDot := strings.TrimPrefix(imgExt, ".")
-	imgMIME, err := MIMEFromExt(imgExtStripDot)
+	imgMIME, err := MIMEFromExt(ext)
 	if err != nil {
 		return nil, err
 	}
 
-	err = p.root.ContentType.AddExtension(imgExtStripDot, imgMIME)
+	err = p.root.ContentType.AddExtension(ext, imgMIME)
 	if err != nil {
 		return nil, err
 	}

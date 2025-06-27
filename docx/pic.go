@@ -28,7 +28,7 @@ type PicMeta struct {
 // Returns:
 //   - *PicMeta: Metadata about the added picture, including the Paragraph instance and Inline element.
 //   - error: An error, if any occurred during the process.
-func (rd *RootDoc) AddPicture(path string, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (rd *RootDoc) AddPicture(path, ext string, width units.Inch, height units.Inch) (*PicMeta, error) {
 
 	p := newParagraph(rd)
 
@@ -37,5 +37,5 @@ func (rd *RootDoc) AddPicture(path string, width units.Inch, height units.Inch) 
 	}
 	rd.Document.Body.Children = append(rd.Document.Body.Children, bodyElem)
 
-	return p.AddPicture(path, width, height)
+	return p.AddPicture(path, ext, width, height)
 }
