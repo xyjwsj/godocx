@@ -3,7 +3,7 @@ package ctypes
 import (
 	"encoding/xml"
 
-	"github.com/gomutex/godocx/wml/stypes"
+	"github.com/xyjwsj/godocx/wml/stypes"
 )
 
 // Header Reference

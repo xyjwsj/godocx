@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gomutex/godocx/dml/dmlct"
-	"github.com/gomutex/godocx/dml/dmlprops"
-	"github.com/gomutex/godocx/dml/dmlst"
+	"github.com/xyjwsj/godocx/dml/dmlct"
+	"github.com/xyjwsj/godocx/dml/dmlprops"
+	"github.com/xyjwsj/godocx/dml/dmlst"
 )
 
 func TestMarshalNonVisualPicProp(t *testing.T) {
